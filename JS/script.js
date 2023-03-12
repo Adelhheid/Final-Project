@@ -34,20 +34,17 @@ setSalary();
 
 const userPosition = ['Junior developer', 'Middle developer', 'Senior developer', 'Junior QA', 'Middle QA', 'Senior QA', 'Project manager'];
 function getNames() {
-    // const userNames = [];
-    const userNames = ['Андрій', 'Артем', 'Аліна', 'Оксана', 'Петро', 'Іра', 'Таня'];
+    const userNames = [];
 
-    // for (let i = 0; i < userPosition.length; i++) {
-    //     const userName = prompt("Введіть Ваше ім'я", "Олег");
-    //     userNames.push(userName);
-    // }
+    for (let i = 0; i < userPosition.length; i++) {
+        const userName = prompt("Введіть Ваше ім'я", "Олег");
+        userNames.push(userName);
+    }
     return userNames;
 }
 
 const team = {};
 function createTeam(arr) {
-
-
     for (let i = 0; i < userPosition.length; i++) {
         team[`user${i + 1}`] = {
             name: arr[i],
@@ -58,7 +55,6 @@ function createTeam(arr) {
 
 function setSalary() {
     for (let key in team) {
-        console.log(team[key].position);
         if (team[key].position.includes("Junior")) {
             team[key]["salary"] = randomInt(500, 1000);
         } else if (team[key].position.includes("Middle")) {
@@ -76,7 +72,6 @@ function setSalary() {
 }
 
 
-getNames();
 createTeam(getNames());
 setSalary();
 
@@ -90,22 +85,14 @@ for (let key in team) {
     team[key].tellAboutYourSelf();
 }
 
-// Добавить объекту team метод showTeam(), который будет выводить информацию о всех сотрудниках в консоль в формате:
-// "John - Project manager. Зарплата - 4863$."
-
-// function showTeam() {
-//     for (let key in team) {
-//         console.log(`${team[key].name} - ${team[key].position}. Зарплата - ${team[key]['salary']}$.`);
-//     }
-// }
-
 team.showTeam = function () {
     for (let key in team) {
-        console.log(`${team[key].name} - ${team[key].position}. Зарплата - ${team[key]['salary']}$.`);
+        if (key.includes("user")) {
+            console.log(`${team[key].name} - ${team[key].position}. Зарплата - ${team[key]['salary']}$.`);
+        }
     }
 };
 
-// console.log(team)
 team.showTeam();
 
 
